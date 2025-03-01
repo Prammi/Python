@@ -1,0 +1,93 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+        self.prev = None
+        
+
+class DoublyLinkedList:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.head = new_node
+        self.tail = new_node
+        self.length = 1
+
+    def print_list(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
+        
+    def append(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+        self.length += 1
+        return True
+
+    def get(self,index):
+        if(index>self.length or index <0):
+            print("Index out of bound")
+        else:
+            i=0
+            temp=self.head
+            while i<self.length:
+                if(i==index):
+                    return temp
+                i+=1
+                temp=temp.next
+ 
+    def swap_first_last(self):
+        if self.length ==0:
+            return None
+        else:
+            firstNode=self.get(0)
+            lastNode=self.get(self.length-1)
+            temp=firstNode.value
+            firstNode.value=lastNode.value
+            lastNode.value=temp
+            
+    
+    
+    
+
+my_doubly_linked_list = DoublyLinkedList(1)
+my_doubly_linked_list.append(2)
+my_doubly_linked_list.append(3)
+my_doubly_linked_list.append(4)
+
+
+print('DLL before swap_first_last():')
+my_doubly_linked_list.print_list()
+
+
+my_doubly_linked_list.swap_first_last()
+
+
+print('\nDLL after swap_first_last():')
+my_doubly_linked_list.print_list()
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    DLL before swap_first_last():
+    1
+    2
+    3
+    4
+
+    DLL after swap_first_last():
+    4
+    2
+    3
+    1
+
+"""
+
