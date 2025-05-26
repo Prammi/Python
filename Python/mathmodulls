@@ -1,0 +1,18 @@
+import math
+
+# print(help(math))
+
+print(math.ceil(3.5)) # rounds to higher value always 
+print(math.floor(3.5)) # rounds to lower value always 
+print(round(3.5)) # odd rounds to higher value
+print(round(4.5)) # even rounds to lower value
+
+print(math.pi)
+print(math.log(math.e))
+print(math.e)
+
+print(math.log(math.e,10))
+
+print(abs(-3))
+print(abs(3))
+
