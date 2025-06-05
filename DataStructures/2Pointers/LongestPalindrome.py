@@ -10,8 +10,7 @@ class Solution(object):
                 if(left==right):
                     longest+=1
                 else:
-                    longest+=2
-                
+                    longest+=2                
             else:
                 right-=1
             

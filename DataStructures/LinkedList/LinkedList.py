@@ -130,13 +130,49 @@ class LinkedList:
             current.next=None
             self.length-=1    
 
-    def reverse(self):
+    def getValueatanIndex(self,index):
+        if self.length==0:
+            print("No value to print")
+        else:
+            temp=self.head
+            for i in range(self.length):
+                if(i==index):
+                    
+                    return temp
+                else:
+                    temp=temp.next
+    
+    
+    def reverseValues(self,i,j): 
+        prev_i=self.getValueatanIndex(i-1)
+        next_j=self.getValueatanIndex(j+1)
+        
+        prev=next_j
+        current=self.getValueatanIndex(i)
+        for i in range(0,j):
+            next=current.next
+            current.next=prev
+            prev=current
+            current=next
+            
+        prev_i.next=prev
         
         
-       
+    def swapValues(self,i,j):
+        ith=self.getValueatanIndex(i)
+        jth=self.getValueatanIndex(j)
+        
+        ith.value,jth.value=jth.value,ith.value
 
-
-
+    def __str__(self):
+        start=self.head
+        _str=''
+        for _ in range(self.length):
+            _str=_str+ str(start.value) +'->'
+            start=start.next
+        
+        return _str + 'None'
+    
         
 
 
@@ -162,15 +198,29 @@ class LinkedList:
 # my_linkedList.insert(0,-3)
 # my_linkedList.print_linkedList()
 
-my_linkedList2=LinkedList(1)
-my_linkedList2.insert(0,2)
-my_linkedList2.append(3)
-my_linkedList2.append(4)
-my_linkedList2.remove(1)
-my_linkedList2.print_linkedList()
+# my_linkedList2=LinkedList(1)
+# my_linkedList2.insert(0,2)
+# my_linkedList2.append(3)
+# my_linkedList2.append(4)
+# my_linkedList2.remove(1)
+# my_linkedList2.print_linkedList()
 
-my_linkedList2.reverse()
-my_linkedList2.print_linkedList()
+# my_linkedList2.reverse()
+# my_linkedList2.print_linkedList()
+
+
+
+_array=[1,2,3,4,5]
+
+_linkedList=LinkedList()
+
+for i in _array:
+    _linkedList.append(i)
+print(_linkedList)
+
+_linkedList.reverseValues(1,3)
+print(_linkedList)
+
 
 
 
