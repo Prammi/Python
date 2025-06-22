@@ -51,8 +51,86 @@ class BinarySearchTree:
                 queue.append(queue[0].right)
             queue.pop(0)
             
-        
+    
+    def printAllPath(self,root): 
+        def printSinglePath(node,path,paths):
+            if node is None:
+                return
+            
+            path=path + str(node.key)
+            
+            if node.left is None and node.right is None:
+                paths.append(path)
+                
+            else:
+                path=path+"-->"
+                printSinglePath(node.left,path,paths)
+                printSinglePath(node.right,path,paths)
+                
+                
 
+        paths=[]
+        printSinglePath(root,"",paths)
+        return paths
+     
+    def printAllLeft(self,root):
+        
+        def getLeftPath(node,path):
+            if node is None:
+                return ""
+            
+            path=path+str(node.key)
+            if node.left is None:
+                return path
+            else:
+                path=path+'==>'
+                return getLeftPath(node.left,path)
+                
+        
+        path=""
+        return getLeftPath(root,path)
+    
+    
+    def getKthElement(self,root):
+        
+        def formArrayfromBST(node,result):
+            if node is None:
+                return None
+            formArrayfromBST(node.left,result)
+            result.append(node.key)
+            formArrayfromBST(node.right,result)
+            
+        
+        result=[]
+        formArrayfromBST(root,result)
+        return result
+    
+    def bfs_printnodeSet(self,root):
+        from collections import deque
+        queue=deque()
+        result=[]
+        result.append([root.key])
+        queue.append(root)
+        while len(queue)>0:
+            temp=[]
+            if queue[0].left:
+                temp.append(queue[0].left.key)
+                queue.append(queue[0].left)
+            if queue[0].right:
+                temp.append(queue[0].right.key)
+                queue.append(queue[0].right) 
+            if len(temp)>0:
+                result.append(temp)            
+            queue.popleft()         
+        return result    
+            
+                
+                
+                
+
+            
+                
+        
 # Example usage:
 bst = BinarySearchTree()
 bst.insert(50)
@@ -70,3 +148,15 @@ print("Post Order")
 bst.postOrder(bst.root)
 print("bst traversal")
 bst.BfsTraversal(bst.root)
+print("printing all paths")
+paths=bst.printAllPath(bst.root)
+print(paths)
+lPath=bst.printAllLeft(bst.root)
+print(lPath)
+KthValue=2
+result=bst.getKthElement(bst.root)
+print("The "+str(KthValue)+" in the BST is "+str(result[KthValue-1]))
+print("printing BFS node list ")
+result=bst.bfs_printnodeSet(bst.root)
+print(result)
+
